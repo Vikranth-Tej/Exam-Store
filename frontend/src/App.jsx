@@ -1,12 +1,21 @@
-import React from 'react'
-import Nav from './components/Nav'
+import React from "react";
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import Nav from "./components/Nav";
+import Login from "./components/Login";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div>
-      <Nav/>
-    </div>
-  )
+    <>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Login/>} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
+  );
 }
 
-export default App
+export default App;
