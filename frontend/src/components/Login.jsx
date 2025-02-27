@@ -1,17 +1,73 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const Login = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   return (
-    <div className="relative bg-[#0A0A1E] text-white min-h-screen flex items-center justify-center overflow-hidden">
-      
-      {/* Glowing Elements */}
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-violet-500 opacity-50 blur-3xl rounded-full animate-pulse"></div>
-      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-blue-500 opacity-50 blur-3xl rounded-full animate-pulse"></div>
-      
-      
+    <div className="flex h-screen">
+      {/* Left Login Section */}
+      <div className="w-1/2 flex flex-col justify-center items-center bg-gray-900 text-white p-8">
+        <h2 className="text-3xl font-semibold">Login</h2>
+        <p className="mt-2 text-gray-400">Enter your account details</p>
 
+        <form className="w-3/4 mt-6">
+          {/* Username Input */}
+          <input
+            type="text"
+            placeholder="Username"
+            className="w-full p-3 mb-4 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none"
+            required
+          />
+
+          {/* Password Input with Toggle */}
+          <div className="relative">
+            <input
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Password"
+              className="w-full p-3 pr-10 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none"
+              required
+            />
+            <span
+              className="absolute right-3 top-3 cursor-pointer text-gray-400"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            >
+              {passwordVisible ? "🙈" : "👁️"}
+            </span>
+          </div>
+
+          {/* Forgot Password */}
+          <a href="#" className="block text-gray-400 mt-2 text-sm">
+            Forgot Password?
+          </a>
+
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full mt-4 p-3 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold transition"
+          >
+            Login
+          </button>
+        </form>
+
+        {/* Sign Up Link */}
+        <div className="mt-4 text-gray-400 text-sm flex justify-between">
+          Don't have an account?
+          <a href="#" className="text-blue-400 hover:underline">
+            Sign up
+          </a>
+        </div>
+      </div>
+
+      {/* Right Illustration Section */}
+      <div className="w-1/2 flex flex-col justify-center items-center bg-gradient-to-br from-blue-700 to-blue-500 text-white text-center p-8">
+        <h1 className="text-4xl font-bold">
+          Welcome to <br />
+          <span className="text-gray-200 text-6xl">Exam Store</span>
+        </h1>
+        <p className="mt-3 text-lg">Login to access your account</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

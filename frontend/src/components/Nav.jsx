@@ -26,7 +26,7 @@ const Nav = () => {
     navigate("/"); 
   };
   return (
-    <nav className="w-full h-20 flex items-center justify-between px-5 fixed top-0 z-20 bg-[#3859dc]">
+    <nav className="w-full h-20 flex items-center justify-between px-5 fixed top-0 z-20 bg-gradient-to-r from-blue-700 to-blue-500">
       {/* Logo */}
       <div className="flex items-center justify-between cursor-pointer">
         <img src={logo} alt="My logo" className="w-20 h-15" />
