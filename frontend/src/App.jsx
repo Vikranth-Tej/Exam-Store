@@ -1,9 +1,9 @@
 import React from "react";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Nav from "./components/Nav";
-import Login from "./components/Login";
+import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 
 function App() {
   return (
