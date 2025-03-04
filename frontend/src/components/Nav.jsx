@@ -1,32 +1,33 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import logo from "../assets/Logo.svg";
+import { useAuthStore } from "../store/useAuthStore";
+import axios from "axios";
+import { FaUserCircle } from "react-icons/fa";
 
 const Nav = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { authUser, logout } = useAuthStore();
+  const isLoggedIn = !!authUser;
 
   useEffect(() => {
-    // const user = localStorage.getItem("loggedInUser");
-    // setIsLoggedIn(!!user);
-    setIsLoggedIn(false);
-  }, []);
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get("/api/auth", { withCredentials: true });
+        setUser(res.data);
+      } catch (error) {
+        console.log("User not logged in");
+      }
+    };
 
-  const handleLogout = () => {
-    // localStorage.removeItem("loggedInUser");
-    setIsLoggedIn(false);
-    navigate("/login");
-  };
-
-  const handleLogin = () => {
-    // localStorage.setItem("loggedInUser", "true"); 
-    setIsLoggedIn(true);
-    navigate("/"); 
-  };
+    if (isLoggedIn) {
+      fetchUser();
+    }
+  }, [isLoggedIn]);
   return (
-    <nav className="w-full h-20 flex items-center justify-between px-5 fixed top-0 z-20 bg-gradient-to-r from-blue-700 to-blue-500">
+    <nav className="w-full h-20 flex items-center justify-between px-5 fixed top-0 z-20 bg-gradient-to-r from-blue-300 to-blue-500">
       {/* Logo */}
       <div className="flex items-center justify-between cursor-pointer">
         <img src={logo} alt="My logo" className="w-20 h-15" />
@@ -61,6 +62,40 @@ const Nav = () => {
               Contact
             </li>
           </ul>
+
+          <div className="relative">
+            {/* Profile Icon */}
+            <button
+              className="text-sky-50 text-2xl hover:text-cyan-300 transition-all duration-300"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <FaUserCircle />
+            </button>
+
+            {/* Dropdown Menu */}
+            {isOpen && (
+              <div className="absolute right-0 mt-2 w-36 bg-black text-sky-50 rounded-md shadow-lg">
+                <button
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-800 transition"
+                  onClick={() => {
+                    navigate("/profile");
+                    setIsOpen(false);
+                  }}
+                >
+                  Profile
+                </button>
+                <button
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-800 transition"
+                  onClick={() => {
+                    logout();
+                    setIsOpen(false);
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </>
       ) : (
         <>
@@ -77,13 +112,18 @@ const Nav = () => {
             </li>
           </ul>
 
-          
           {/* Signup and signin buttons */}
           <div className="flex items-center justify-between gap-5 text-xl">
-            <button className="cursor-pointer text-sky-50 hover:text-cyan-300 transition-all duration-500  hover:scale-105" onClick={handleLogin}>
+            <button
+              className="cursor-pointer text-sky-50 hover:text-cyan-300 transition-all duration-500  hover:scale-105"
+              onClick={() => navigate("/login")}
+            >
               SignIn
             </button>
-            <button className="cursor-pointer bg-black text-sky-50 px-5 py-1.5 hover:text-cyan-300 transition-all duration-500  hover:scale-105 rounded-sm" onClick={handleLogin}>
+            <button
+              className="cursor-pointer bg-black text-sky-50 px-5 py-1.5 hover:text-cyan-300 transition-all duration-500  hover:scale-105 rounded-sm"
+              onClick={() => navigate("/signup")}
+            >
               SignUp
             </button>
           </div>

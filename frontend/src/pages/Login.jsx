@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -52,9 +53,9 @@ const Login = () => {
         {/* Sign Up Link */}
         <div className="mt-4 text-gray-400 text-sm flex justify-between">
           Don't have an account?
-          <a href="#" className="text-blue-400 hover:underline">
-            Sign up
-          </a>
+          <Link to="/signup" className="link link-primary text-blue-500">
+                Sign up
+              </Link>
         </div>
       </div>
 
