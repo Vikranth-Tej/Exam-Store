@@ -38,12 +38,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const success = validateForm();
     if (validateForm() === true) login(formData);
   };
 
   return (
     <div>
-      <div className="flex h-screen bg-gradient-to-bl from-blue-300 to-white">
+      <div className="flex h-screen bg-gradient-to-bl from-blue-400 to-white">
         {/* Right Side - Illustration */}
         <div className="w-[45%] flex justify-center items-center bg-gray-700 shadow-lg rounded-lg p-12">
           <div className="w-3/4">
