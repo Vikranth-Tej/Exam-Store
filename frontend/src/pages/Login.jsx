@@ -39,7 +39,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const success = validateForm();
-    if (validateForm() === true) login(formData);
+    if (success === true) login(formData);
   };
 
   return (

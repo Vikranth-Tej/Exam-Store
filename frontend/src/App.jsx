@@ -7,6 +7,7 @@ import Profile from './pages/Profile'
 import Footer from './components/Footer'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuthStore } from './store/useAuthStore'
+import { Toaster } from "react-hot-toast";
 
 import { Loader } from "lucide-react"
 
@@ -38,6 +39,8 @@ const App = () => {
       </Routes>
 
       <Footer />
+
+      <Toaster />
     </div>
   )
 }
