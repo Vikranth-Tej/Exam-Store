@@ -1,72 +1,137 @@
 import React, { useState } from "react";
+import image from "../assets/Login_img.jpg";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useAuthStore } from "../store/useAuthStore.js";
+import { Mail, Lock } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import Features from "../components/Features.jsx";
 
 const Login = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      return "Good Morning ";
+    } else if (hour < 18) {
+      return "Good Afternoon ";
+    } else {
+      return "Good Evening ";
+    }
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { login, isLoggingIn } = useAuthStore();
+
+  const validateForm = () => {
+    if (!formData.email.trim()) return toast.error("Email is required");
+    if (!/^[a-zA-Z0-9._%+-]+@student\.nitw\.ac\.in$/.test(formData.email)) {
+      return toast.error("Invalid Email");
+    }
+    if (!formData.password) return toast.error("Password is required");
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm() === true) login(formData);
+  };
 
   return (
-    <div className="flex h-screen">
-      {/* Left Login Section */}
-      <div className="w-1/2 flex flex-col justify-center items-center bg-gray-900 text-white p-8">
-        <h2 className="text-3xl font-semibold">Login</h2>
-        <p className="mt-2 text-gray-400">Enter your account details</p>
+    <div>
+      <div className="flex h-screen bg-gradient-to-bl from-blue-300 to-white">
+        {/* Right Side - Illustration */}
+        <div className="w-[45%] flex justify-center items-center bg-gray-700 shadow-lg rounded-lg p-12">
+          <div className="w-3/4">
+            <h2 className="text-3xl font-semibold text-white">
+              Hello! {getGreeting()}
+            </h2>
+            <p className="text-white mt-2">Sign in to continue.</p>
 
-        <form className="w-3/4 mt-6">
-          {/* Username Input */}
-          <input
-            type="text"
-            placeholder="Username"
-            className="w-full p-3 mb-4 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none"
-            required
-          />
+            {/* Login Form */}
+            <form onSubmit={handleSubmit} className="mt-6 text-white">
+              <div className="relative">
+                <Mail className="absolute left-3 top-3 text-gray-400" size={20} />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full p-3 pl-10 rounded border border-white focus:outline-none focus:border-blue-500 mb-4"
+                  required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                />
+              </div>
 
-          {/* Password Input with Toggle */}
-          <div className="relative">
-            <input
-              type={passwordVisible ? "text" : "password"}
-              placeholder="Password"
-              className="w-full p-3 pr-10 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none"
-              required
-            />
-            <span
-              className="absolute right-3 top-3 cursor-pointer text-gray-400"
-              onClick={() => setPasswordVisible(!passwordVisible)}
-            >
-              {passwordVisible ? "🙈" : "👁️"}
-            </span>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  className="w-full p-3 pl-10 rounded border border-white focus:outline-none focus:border-blue-500 mb-4"
+                  required
+                  value={formData.password}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
+                />
+                <span
+                  className="absolute right-3 top-3 cursor-pointer text-gray-400"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </span>
+              </div>
+              <div className="my-2.5 ">
+                <p className="text-white text-sm ">
+                  <Link to="/forgot-password" className="text-blue-500">
+                    Forgot password?
+                  </Link>
+                </p>
+              </div>
+
+              {/* Login Button */}
+              <button
+                type="submit"
+                className="w-full p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition"
+                disabled={isLoggingIn}
+              >
+                {isLoggingIn ? (
+                  <>
+                    <Loader2 className="size-5 animate-spin" />
+                    Loading...
+                  </>
+                ) : (
+                  "Sign In"
+                )}
+              </button>
+            </form>
+
+            {/* Signup & Forgot Password Links */}
+            <div className="mt-2 text-center">
+              <p className="text-white text-sm">
+                Don't have an account? {" "}
+                <Link to="/signup" className="link link-primary text-blue-500">
+                  Sign up
+                </Link>
+              </p>
+            </div>
           </div>
+        </div>
 
-          {/* Forgot Password */}
-          <a href="#" className="block text-gray-400 mt-2 text-sm">
-            Forgot Password?
-          </a>
-
-          {/* Login Button */}
-          <button
-            type="submit"
-            className="w-full mt-4 p-3 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold transition"
-          >
-            Login
-          </button>
-        </form>
-
-        {/* Sign Up Link */}
-        <div className="mt-4 text-gray-400 text-sm flex justify-between">
-          Don't have an account?
-          <Link to="/signup" className="link link-primary text-blue-500">
-                Sign up
-              </Link>
+        {/* Left Side - Illustration */}
+        <div className="w-[50%] flex flex-col justify-center items-center text-center px-8 text-white">
+          <h2 className="text-3xl font-bold mt-6">Welcome Back</h2>
+          <p className="mt-2 text-xm opacity-100">sign in now and take control of your journey!.</p>
+          <img src={image} alt="" className="w-150 mt-6 h-100 ml-15" />
         </div>
       </div>
-
-      {/* Right Illustration Section */}
-      <div className="w-1/2 flex flex-col justify-center items-center bg-gradient-to-br from-blue-700 to-blue-500 text-white text-center p-8">
-        <h1 className="text-4xl font-bold">
-          Welcome to <br />
-          <span className="text-gray-200 text-6xl">Exam Store</span>
-        </h1>
-        <p className="mt-3 text-lg">Login to access your account</p>
-      </div>
+      <Features />
     </div>
   );
 };
