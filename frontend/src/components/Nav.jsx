@@ -8,6 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const { authUser, logout } = useAuthStore();
   const isLoggedIn = !!authUser;
