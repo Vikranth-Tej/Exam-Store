@@ -4,7 +4,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import logo from "../assets/Logo.svg";
 import { useAuthStore } from "../store/useAuthStore";
 import axios from "axios";
-import { FaUserCircle } from "react-icons/fa";
+import ProfileDropdown from "./ProfileDropdown";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,50 +53,17 @@ const Nav = () => {
 
           {/* List of items */}
           <ul className="flex items-center justify-between gap-10 text-sky-50 list-none text-xl pr-2">
-            <li className="cursor-pointer hover:text-cyan-300  hover:border-b-2 hover:scale-125 border-white transition-all duration-500 ">
+            <li className="cursor-pointer hover:text-cyan-300  hover:border-b-2 hover:scale-125 border-white transition-all duration-500 " onClick={() => navigate("/")}>
               Home
             </li>
-            <li className="cursor-pointer hover:text-cyan-300 hover:border-b-2 transition-all duration-500  hover:scale-125 border-white">
+            <li className="cursor-pointer hover:text-cyan-300 hover:border-b-2 transition-all duration-500  hover:scale-125 border-white" >
               About
             </li>
             <li className="cursor-pointer hover:text-cyan-300 hover:border-b-2  transition-all duration-500  hover:scale-125 border-white">
               Contact
             </li>
+            <ProfileDropdown authUser={user} logout={logout} />
           </ul>
-
-          <div className="relative">
-            {/* Profile Icon */}
-            <button
-              className="text-sky-50 text-2xl hover:text-cyan-300 transition-all duration-300"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <FaUserCircle />
-            </button>
-
-            {/* Dropdown Menu */}
-            {isOpen && (
-              <div className="absolute right-0 mt-2 w-36 bg-black text-sky-50 rounded-md shadow-lg">
-                <button
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-800 transition"
-                  onClick={() => {
-                    navigate("/profile");
-                    setIsOpen(false);
-                  }}
-                >
-                  Profile
-                </button>
-                <button
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-800 transition"
-                  onClick={() => {
-                    logout();
-                    setIsOpen(false);
-                  }}
-                >
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
         </>
       ) : (
         <>
@@ -111,6 +78,7 @@ const Nav = () => {
             <li className="cursor-pointer hover:text-cyan-300 hover:border-b-2  transition-all duration-500  hover:scale-125 border-white">
               Contact
             </li>
+            <ProfileDropdown/>
           </ul>
 
           {/* Signup and signin buttons */}
