@@ -56,7 +56,7 @@ const Nav = () => {
             <li className="cursor-pointer hover:text-cyan-300  hover:border-b-2 hover:scale-125 border-white transition-all duration-500 " onClick={() => navigate("/")}>
               Home
             </li>
-            <li className="cursor-pointer hover:text-cyan-300 hover:border-b-2 transition-all duration-500  hover:scale-125 border-white" >
+            <li className="cursor-pointer hover:text-cyan-300 hover:border-b-2 transition-all duration-500  hover:scale-125 border-white" onClick={() => navigate("/about")}>
               About
             </li>
             <li className="cursor-pointer hover:text-cyan-300 hover:border-b-2  transition-all duration-500  hover:scale-125 border-white" onClick={() => navigate("/contact")}>

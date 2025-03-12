@@ -1,5 +1,4 @@
 import React from "react";
-import paperPlane from "../assets/paper-plane.png";
 import backgroundImage from "../assets/contact_background.jpg";
 
 const Contact = () => {

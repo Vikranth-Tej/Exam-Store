@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User } from "lucide-react";
+import backgroundImage from "../assets/profile2_bg.jpg";
 
 const Profile = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
@@ -22,12 +23,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="pt-20 w-full h-full flex flex-col md:flex-row overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="max-w-2xl mx-auto p-4 py-8">
-        <div className="bg-base-300 rounded-xl p-6 space-y-8">
+        <div className="bg-base-300 rounded-xl p-6 space-y-8 w-xl backdrop-blur-sm shadow-[2px_2px_10px_black,2px_2px_20px_blue] transition-shadow duration-300 hover:shadow-[2px_2px_10px_rgb(105,208,215),2px_2px_20px_rgb(105,208,215)]">
           <div className="text-center">
-            <h1 className="text-2xl font-semibold ">Profile</h1>
-            <p className="mt-2">Your profile information</p>
+            <h1 className="text-2xl font-semibold text-white">Profile</h1>
+            <p className="mt-2 text-white">Your profile information</p>
           </div>
 
           {/* avatar upload section */}
@@ -60,37 +61,37 @@ const Profile = () => {
                 />
               </label>
             </div>
-            <p className="text-sm text-zinc-400">
+            <p className="text-m text-zinc-300">
               {isUpdatingProfile ? "Uploading..." : "Click the camera icon to update your photo"}
             </p>
           </div>
 
           <div className="space-y-6">
             <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="text-sm text-zinc-300 flex items-center gap-2">
                 <User className="w-4 h-4" />
                 Full Name
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.fullName}</p>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border border-white text-blue-200">{authUser?.fullName}</p>
             </div>
 
             <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="text-sm text-zinc-300 flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 Email Address
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.email}</p>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border border-white text-blue-200">{authUser?.email}</p>
             </div>
           </div>
 
           <div className="mt-6 bg-base-300 rounded-xl p-6">
-            <h2 className="text-lg font-medium  mb-4">Account Information</h2>
+            <h2 className="text-lg font-medium  mb-4 text-white">Account Information</h2>
             <div className="space-y-3 text-sm">
-              <div className="flex items-center justify-between py-2 border-b border-zinc-700">
+              <div className="flex items-center justify-between py-2 border-b border-b-blue-300 text-blue-200">
                 <span>Member Since</span>
                 <span>{authUser.createdAt?.split("T")[0]}</span>
               </div>
-              <div className="flex items-center justify-between py-2">
+              <div className="flex items-center justify-between py-2 text-blue-200">
                 <span>Account Status</span>
                 <span className="text-green-500">Active</span>
               </div>
