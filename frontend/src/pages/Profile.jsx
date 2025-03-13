@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User } from "lucide-react";
-import backgroundImage from "../assets/profile2_bg.jpg";
+import backgroundImage from "../assets/profile_bg.jpg";
 
 const Profile = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
@@ -50,7 +50,7 @@ const Profile = () => {
                   ${isUpdatingProfile ? "animate-pulse pointer-events-none" : ""}
                 `}
               >
-                <Camera className="w-5 h-5 text-base-200" />
+                <Camera className="w-5 h-5 text-base-200 text-white" />
                 <input
                   type="file"
                   id="avatar-upload"
