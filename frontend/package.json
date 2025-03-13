@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.4",
-    "axios": "^1.8.1",
+    "axios": "^1.8.2",
     "cloudinary": "^2.5.1",
     "cors": "^2.8.5",
     "lucide-react": "^0.476.0",
