@@ -31,9 +31,9 @@ const Nav = () => {
     <nav className="w-full h-20 flex items-center justify-between px-5 fixed top-0 z-20 bg-gradient-to-r from-blue-300 to-blue-500">
       {/* Logo */}
       <div className="flex items-center justify-between cursor-pointer">
-        <img src={logo} alt="My logo" className="w-20 h-15" />
+        <img src={logo} alt="My logo" className="w-20 h-15" onClick={() => navigate("/")} />
 
-        <h1 className="text-3xl bg-gradient-to-r from-black to-white bg-clip-text text-transparent font-bold">
+        <h1 className="text-3xl bg-gradient-to-r from-black to-white bg-clip-text text-transparent font-bold" onClick={() => navigate("/")}>
           Exam-Store
         </h1>
       </div>
