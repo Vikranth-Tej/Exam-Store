@@ -17,6 +17,14 @@ const questionPaperSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  semester: {
+    type: String, // e.g., "1", "2", ..., "8"
+    required: false
+  },
+  downloads: {
+    type: Number,
+    default: 0
+  },
   fileUrl: {
     type: String,
     required: true

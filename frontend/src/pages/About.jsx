@@ -51,7 +51,7 @@ const About = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">About Exam Store</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
             Empowering students with comprehensive educational resources and previous year question papers 
-            to excel in their academic journey since 2020.
+            to excel in their academic journey since 2024.
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ const About = () => {
                   <div className="text-gray-600">Question Papers</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-2">150+</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">1</div>
                   <div className="text-gray-600">Universities</div>
                 </div>
                 <div>
@@ -169,7 +169,7 @@ const About = () => {
                   resources accessible to every student.
                 </p>
                 <p>
-                  Today, we're proud to serve over 50,000 students across 150+ universities, 
+                  Today, we're proud to serve over 50,000 students across 1 university, 
                   helping them achieve their academic goals and build successful careers.
                 </p>
               </div>
@@ -179,7 +179,7 @@ const About = () => {
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-blue-800 font-bold">
-                    2020
+                    2024
                   </div>
                   <div>
                     <div className="font-semibold">Founded</div>
@@ -188,7 +188,7 @@ const About = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-blue-800 font-bold">
-                    2022
+                    2025
                   </div>
                   <div>
                     <div className="font-semibold">Growth</div>
@@ -197,11 +197,11 @@ const About = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-blue-800 font-bold">
-                    2024
+                    2025
                   </div>
                   <div>
                     <div className="font-semibold">Expansion</div>
-                    <div className="text-blue-100 text-sm">50,000+ students, 150+ universities</div>
+                    <div className="text-blue-100 text-sm">50,000+ students,  universities</div>
                   </div>
                 </div>
               </div>
