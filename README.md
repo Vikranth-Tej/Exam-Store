@@ -22,6 +22,6 @@
 - **State Management:** Zustand (`useAuthStore`)  
 - **Icons & UI Components:** Lucide-react, React Icons  
 - **Animations & Interactivity:** Framer Motion  
-- **Deployment:** Vercel / Render / Your preferred hosting  
+- **Deployment:** Render
 
 ---
